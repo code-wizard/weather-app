@@ -1,0 +1,70 @@
+<div class="container">
+  <div>
+    <h2>Temperature </h2>
+    <div style="text-align: right">
+      <button  class="m-l-20" mat-raised-button
+               (click)="newData()"
+               color="secondary">Add New</button>
+    </div>
+
+    <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)" rowHeight="80px" gutterSize="5px">
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Temperature Level</mat-label>
+          <mat-select [formControl]="level">
+            <mat-option value="min">Min</mat-option>
+            <mat-option value="max">Max</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Select Country</mat-label>
+          <mat-select [formControl]="country">
+            <mat-option *ngFor="let c of countries" [value]="c">{{c}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+       <mat-grid-tile>
+         <mat-form-field >
+           <!--<mat-label>Start Date</mat-label>-->
+           <input matInput [formControl]="startDate"
+                  [matDatepicker]="start"
+                  placeholder="Start Date" >
+           <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+           <mat-datepicker #start startView="multi-year"
+                           (yearSelected)="chosenYearHandler($event, startDate)"
+                           (monthSelected)="chosenMonthHandler($event, start, startDate)"></mat-datepicker>
+         </mat-form-field>
+       </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field >
+          <!--<mat-label>End Date</mat-label>-->
+          <input matInput [matDatepicker]="end"
+                 [formControl]="endDate"
+                 placeholder="End Date" >
+          <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+          <mat-datepicker #end startView="multi-year"
+                          (yearSelected)="chosenYearHandler($event, endDate)"
+                          (monthSelected)="chosenMonthHandler($event, end, endDate)"></mat-datepicker>
+        </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <div style="text-align: right">
+      <button  class="m-l-20" mat-raised-button
+               (click)="viewReport()"
+               color="primary">View Report</button>
+    </div>
+  </div>
+  <div style="margin-top: 30px">
+    <div style="display: block">
+      <canvas baseChart  *ngIf="barChartData"
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="chartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+  </div>
+</div>

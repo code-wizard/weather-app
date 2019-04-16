@@ -1,0 +1,38 @@
+.indigo {
+  background-color: #3f51b5;
+  justify-content: center;
+  display: flex;
+  padding: 20px;
+  padding-top: 40px;
+  height: 100vh;
+  align-items: flex-start;
+
+}
+mat-grid-list {
+  width: 350px;
+}
+mat-card {
+  text-align: center;
+}
+mat-card-content {
+  text-align: center;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+.login-logo {
+  width: 100px;
+  height: 100px;
+  /* display: flex; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+}
+.login-logo img {
+  object-fit: scale-down;
+  width: 100%;
+  height: 100%;
+}
